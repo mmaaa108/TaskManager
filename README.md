@@ -32,10 +32,9 @@ TaskManager هو تطبيق ويب بسيط يسمح للمستخدمين بإض
 # بناء وتشغيل الحاويات
 docker-compose up -d
 
-# الوصول للتطبيق
-# افتح المتصفح على: 
+# الوصول للتطبيق 
 
-https://reimagined-lamp-7q9v6gwqg7x2p46p-8080.app.github.dev/
+# افتح المتصفح على: https://reimagined-lamp-7q9v6gwqg7x2p46p-8080.app.github.dev/
 
 ### إيقاف التطبيق
 
