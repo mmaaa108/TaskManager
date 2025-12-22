@@ -33,8 +33,9 @@ TaskManager هو تطبيق ويب بسيط يسمح للمستخدمين بإض
 docker-compose up -d
 
 # الوصول للتطبيق
-# افتح المتصفح على: http://localhost:8080
+# افتح المتصفح على: 
 
+https://reimagined-lamp-7q9v6gwqg7x2p46p-8080.app.github.dev/
 
 ### إيقاف التطبيق
 
