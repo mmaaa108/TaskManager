@@ -1,15 +1,20 @@
 <?php
-$host = getenv('DB_HOST') ?: 'db';
-$dbname = getenv('DB_NAME') ?: 'taskdb';
-$username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: 'rootpass';
+<?php
+require __DIR__ . '/vendor/autoload.php';
 
+// تحميل ملف .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// استخدام القيم من .env
+$dsn = "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_DATABASE']};port={$_ENV['DB_PORT']}";
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    $pdo = new PDO($dsn, $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+    echo "✅ اتصال ناجح بقاعدة البيانات";
+} catch (PDOException $e) {
+    echo "❌ فشل الاتصال: " . $e->getMessage();
 }
+
 
 $pdo->exec("CREATE TABLE IF NOT EXISTS tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
