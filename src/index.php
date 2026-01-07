@@ -1,10 +1,8 @@
 <?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-// تحميل ملف .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$host = getenv('DB_HOST') ?: 'db';
+$dbname = getenv('DB_NAME') ?: 'taskdb';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') ?: 'rootpass';
 
 // استخدام القيم من .env
 $dsn = "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_DATABASE']};port={$_ENV['DB_PORT']}";
