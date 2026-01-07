@@ -1,38 +1,21 @@
 version: '3.8'
-
 services:
   web:
     build: .
-    container_name: taskmanager-web
     ports:
       - "8080:80"
-    environment:
-      - DB_HOST=db
-      - DB_NAME=taskdb
-      - DB_USER=root
-      - DB_PASS=rootpass
     volumes:
       - ./src:/var/www/html
     depends_on:
       - db
-    networks:
-      - taskmanager-network
-
   db:
     image: mysql:8.0
-    container_name: taskmanager-db
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpass
-      - MYSQL_DATABASE=taskdb
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: task_manager
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - taskmanager-network
-
-volumes:
-  db_data:
-
-networks:
-  taskmanager-network:
+      - ./sql:/docker-entrypoint-initdb.d
